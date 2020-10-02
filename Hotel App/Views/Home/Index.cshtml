@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container" style="
+        background-image: url('../../Content/Images/hotel2.jpg');
+        background-repeat: repeat-y;
+        background-size: cover;
+    ">
+    <div class="row" style="background: rgba(0, 0, 0, 0.6); min-height: 100%; min-width: 100% ">
+        <div class="col-md-12">
+            <h1 style="color: white; padding-top: 25px; padding-bottom: 10px; padding-left: 40px; font-size: 70px">Hotel Application</h1>
+            <p class="lead" style="color: white; padding-bottom: 35px; padding-left: 40px">This application let you manage your Hotel</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Login</h2>
+        <p>
+            login as Admin or employee to start using this application
+        </p>
+        <a href='@Url.Action("Login", "Accounts")'>
+            <img src="~/Content/Images/login.png" class="img-responsive img-rounded" />
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Register</h2>
+        <p>Register as employee and manage hotel</p>
+        <a href='@Url.Action("Register", "Accounts")'>
+            <img src="~/Content/Images/employees.jpg" class="img-responsive img-rounded" />
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Clients & Rooms</h2>
+        <p>Manage your hotel guests and invite them to your rooms</p>
+        <img src="~/Content/Images/guests.jpg" class="img-responsive img-rounded" />
+    </div>
+
+</div>

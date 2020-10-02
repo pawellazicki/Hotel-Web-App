@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Hotel_App.Models.Accounts>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>System accounts</h2>
+
+<p>
+    @Html.ActionLink("Register new account", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.account_login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.account_type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.account_login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.account_type)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.account_id }) |
+            @if (!Session["account_login"].Equals(item.account_login))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.account_id })
+            }
+        </td>
+    </tr>
+}
+
+</table>

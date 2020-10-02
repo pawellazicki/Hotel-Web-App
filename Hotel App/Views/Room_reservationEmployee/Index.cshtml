@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Hotel_App.Models.Room_reservation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+<h2>Room reservations</h2>
+
+<p>
+    @Html.ActionLink("Add new reservation", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Guest
+        </th>
+        <th>
+            Room number
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clients.client_first_name)
+                @Html.DisplayFor(modelItem => item.Clients.client_last_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rooms.room_number)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.room_reservation_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.room_reservation_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.room_reservation_id })
+            </td>
+        </tr>
+    }
+
+</table>

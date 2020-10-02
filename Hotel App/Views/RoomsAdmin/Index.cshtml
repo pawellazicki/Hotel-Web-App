@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Hotel_App.Models.Rooms>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>List of Rooms in Hotel</h2>
+
+<p>
+    @Html.ActionLink("Add new room", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Room number
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.room_people_capacity)
+        </th>
+        <th>
+            Bathrooms
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.room_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.room_people_capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.room_bathroom)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.room_id }) |
+                @Html.ActionLink("Avaibility", "Details", new { id = item.room_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.room_id })
+            </td>
+        </tr>
+    }
+
+</table>

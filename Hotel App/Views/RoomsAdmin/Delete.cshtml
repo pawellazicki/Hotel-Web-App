@@ -1,0 +1,47 @@
+﻿@model Hotel_App.Models.Rooms
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>Are you sure you want to delete that room?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.room_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.room_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.room_people_capacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.room_people_capacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.room_bathroom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.room_bathroom)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.ActionLink("Return", "Index") | 
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            
+        </div>
+    }
+</div>

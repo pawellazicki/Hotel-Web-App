@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="account_id" />
+          </Key>
+          <Property Name="account_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="account_login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="account_password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="account_type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="client_last_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="client_age" Type="int" Nullable="false" />
+          <Property Name="client_phone_number" Type="int" Nullable="false" />
+          <Property Name="client_address" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="employee_last_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="employee_salary" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="employee_position" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room_reservation">
+          <Key>
+            <PropertyRef Name="room_reservation_id" />
+          </Key>
+          <Property Name="room_reservation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_id" Type="int" />
+          <Property Name="room_id" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="check_in" Type="date" Nullable="false" />
+          <Property Name="check_out" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="room_id" />
+          </Key>
+          <Property Name="room_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="room_number" Type="int" Nullable="false" />
+          <Property Name="room_people_capacity" Type="int" Nullable="false" />
+          <Property Name="room_bathroom" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Room_rese__clien__276EDEB3">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Room_reservation" Type="Self.Room_reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="Room_reservation">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room_rese__room___286302EC">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
+          <End Role="Room_reservation" Type="Self.Room_reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="Room_reservation">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room_reservation" EntityType="Self.Room_reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Room_rese__clien__276EDEB3" Association="Self.FK__Room_rese__clien__276EDEB3">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Room_reservation" EntitySet="Room_reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room_rese__room___286302EC" Association="Self.FK__Room_rese__room___286302EC">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Room_reservation" EntitySet="Room_reservation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="account_id" />
+          </Key>
+          <Property Name="account_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account_login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="account_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="account_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_age" Type="Int32" Nullable="false" />
+          <Property Name="client_phone_number" Type="Int32" Nullable="false" />
+          <Property Name="client_address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Room_reservation" Relationship="Self.FK__Room_rese__clien__276EDEB3" FromRole="Clients" ToRole="Room_reservation" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="employee_last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="employee_salary" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="employee_position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room_reservation">
+          <Key>
+            <PropertyRef Name="room_reservation_id" />
+          </Key>
+          <Property Name="room_reservation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_id" Type="Int32" />
+          <Property Name="room_id" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="check_in" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="check_out" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Room_rese__clien__276EDEB3" FromRole="Room_reservation" ToRole="Clients" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK__Room_rese__room___286302EC" FromRole="Room_reservation" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="room_id" />
+          </Key>
+          <Property Name="room_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="room_number" Type="Int32" Nullable="false" />
+          <Property Name="room_people_capacity" Type="Int32" Nullable="false" />
+          <Property Name="room_bathroom" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Room_reservation" Relationship="Self.FK__Room_rese__room___286302EC" FromRole="Rooms" ToRole="Room_reservation" />
+        </EntityType>
+        <Association Name="FK__Room_rese__clien__276EDEB3">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Room_reservation" Type="Self.Room_reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="Room_reservation">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room_rese__room___286302EC">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
+          <End Role="Room_reservation" Type="Self.Room_reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="Room_reservation">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Room_reservation" EntityType="Self.Room_reservation" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" />
+          <AssociationSet Name="FK__Room_rese__clien__276EDEB3" Association="Self.FK__Room_rese__clien__276EDEB3">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Room_reservation" EntitySet="Room_reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room_rese__room___286302EC" Association="Self.FK__Room_rese__room___286302EC">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Room_reservation" EntitySet="Room_reservation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="DatabaseModel.Accounts">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="account_id" ColumnName="account_id" />
+                <ScalarProperty Name="account_login" ColumnName="account_login" />
+                <ScalarProperty Name="account_password" ColumnName="account_password" />
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="DatabaseModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="client_first_name" ColumnName="client_first_name" />
+                <ScalarProperty Name="client_last_name" ColumnName="client_last_name" />
+                <ScalarProperty Name="client_age" ColumnName="client_age" />
+                <ScalarProperty Name="client_phone_number" ColumnName="client_phone_number" />
+                <ScalarProperty Name="client_address" ColumnName="client_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="DatabaseModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="employee_first_name" ColumnName="employee_first_name" />
+                <ScalarProperty Name="employee_last_name" ColumnName="employee_last_name" />
+                <ScalarProperty Name="employee_salary" ColumnName="employee_salary" />
+                <ScalarProperty Name="employee_position" ColumnName="employee_position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room_reservation">
+            <EntityTypeMapping TypeName="DatabaseModel.Room_reservation">
+              <MappingFragment StoreEntitySet="Room_reservation">
+                <ScalarProperty Name="room_reservation_id" ColumnName="room_reservation_id" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="check_in" ColumnName="check_in" />
+                <ScalarProperty Name="check_out" ColumnName="check_out" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="DatabaseModel.Rooms">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="room_number" ColumnName="room_number" />
+                <ScalarProperty Name="room_people_capacity" ColumnName="room_people_capacity" />
+                <ScalarProperty Name="room_bathroom" ColumnName="room_bathroom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,33 @@
+﻿@model Hotel_App.Models.Rooms
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Room @Html.DisplayFor(model => model.room_number) avaibility</h2>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Check in</th>
+            <th>Check out</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in ViewData["list"] as List<Hotel_App.Models.Room_reservation>)
+        {
+            <tr>
+                <td>@item.check_in.ToShortDateString()</td>
+                <td>@item.check_out.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.room_id }) |*@
+    @Html.ActionLink("Return", "Index")
+</p>

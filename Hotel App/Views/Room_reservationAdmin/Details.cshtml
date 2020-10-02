@@ -1,0 +1,58 @@
+﻿@model Hotel_App.Models.Room_reservation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Reservation details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Clients.client_first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clients.client_first_name)
+        </dd>
+
+        <dt>
+            Room number
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rooms.room_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.check_in)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.check_in)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.check_out)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.check_out)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Return", "Index") |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.room_reservation_id })
+</p>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Hotel_App.Models.Employees>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Hotel employees</h2>
+
+<p>
+    @Html.ActionLink("Add employee", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.employee_first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employee_last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employee_position)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.employee_first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.employee_last_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.employee_position)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.employee_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.employee_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.employee_id })
+        </td>
+    </tr>
+}
+
+</table>

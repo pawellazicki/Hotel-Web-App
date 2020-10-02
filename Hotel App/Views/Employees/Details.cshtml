@@ -1,0 +1,50 @@
+﻿@model Hotel_App.Models.Employees
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Employee details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.employee_first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee_first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee_last_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee_last_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee_salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee_salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee_position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee_position)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Return", "Index") | 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.employee_id })
+</p>
