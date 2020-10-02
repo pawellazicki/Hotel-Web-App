@@ -1,4 +1,4 @@
-# Hotel management .NET web application
+# Hotel management .NET application
 To log in as an administrator
   Username: admin
   Password: admin
